@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    body { font-family: Arial; }
+
+    /* Category buttons */
+    .categories {
+        display: flex;
+        gap: 20px;
+        margin: 20px;
+        flex-wrap: wrap;
+    }
+    .category-btn {
+        padding: 15px 25px;
+        background: #3498db;
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 18px;
+    }
+    .category-btn:hover {
+        background: #2980b9;
+    }
+
+    /* Product grid */
+    .products {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        padding: 20px;
+    }
+    .product {
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 15px;
+        text-align: center;
+    }
+    .product img {
+        width: 100%;
+        border-radius: 10px;
+    }
+    .buy-btn {
+        margin-top: 10px;
+        padding: 10px 20px;
+        background: green;
+        color: white;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+    }
+</style>
+</head>
+
+<body>
+
+<h2 style="text-align:center;">Shop by Category</h2>
+
+<!-- CATEGORY BUTTONS -->
+<div class="categories">
+    <div class="category-btn" onclick="showProducts('mobile')">📱 Mobile</div>
+    <div class="category-btn" onclick="showProducts('fashion')">👗 Fashion</div>
+    <div class="category-btn" onclick="showProducts('grocery')">🛒 Grocery</div>
+</div>
+
+<!-- PRODUCTS SECTION -->
+<div id="productContainer" class="products"></div>
+
+<script>
+// PRODUCT DATA
+const products = {
+    mobile: [
+        {name: "Samsung A12", price: "$180", img: "https://via.placeholder.com/200"},
+        {name: "iPhone 11", price: "$350", img: "https://via.placeholder.com/200"}
+    ],
+    fashion: [
+        {name: "Men T-shirt", price: "$12", img: "https://via.placeholder.com/200"},
+        {name: "Ladies Dress", price: "$22", img: "https://via.placeholder.com/200"}
+    ],
+    grocery: [
+        {name: "Rice 5kg", price: "$8", img: "https://via.placeholder.com/200"},
+        {name: "Cooking Oil 1L", price: "$4", img: "https://via.placeholder.com/200"}
+    ]
+};
+
+// SHOW PRODUCTS WHEN CATEGORY CLICKED
+function showProducts(category) {
+    let container = document.getElementById("productContainer");
+    container.innerHTML = ""; // clear previous products
+
+    products[category].forEach(p => {
+        container.innerHTML += `
+            <div class="product">
+                <img src="${p.img}">
+                <h3>${p.name}</h3>
+                <p>${p.price}</p>
+                <button class="buy-btn">Buy Now</button>
+            </div>
+        `;
+    });
+}
+</script>
+
+</body>
+</html>
